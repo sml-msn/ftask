@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('docker') {
             steps {
-                docker build -t mytag -f Dockerfile .
+               sh 'docker build -t mytag -f Dockerfile .'
             }
         }
     }
