@@ -2,9 +2,9 @@ pipeline {
     agent any
 
     stages {
-        stage('Hello') {
+        stage('docker') {
             steps {
-                echo 'Hello World and Welcome!'
+                docker build -t mytag -f Dockerfile .
             }
         }
     }
