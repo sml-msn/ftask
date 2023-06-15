@@ -1,6 +1,7 @@
 from sklearn.metrics import accuracy_score as acc
 import pandas as pd
 import joblib
+import catboost
 
 def test_pred(datapath, modelpath):
   df = pd.read_csv(datapath)
