@@ -5,6 +5,7 @@ import joblib
 def test_pred(datapath, modelpath):
   df = pd.read_csv(datapath)
   df_X = df.loc[:,['battery_power', 'px_height', 'px_width', 'ram']].values
-  model = joblib.load(modelpath)
+  with open('modelpath', 'rb') as f:
+    model = joblib.load(f)
   preds = model.predict(df_X)
   assert acc(df.price_range.values, df_X) >= 0.8
