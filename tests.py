@@ -9,4 +9,4 @@ def test_pred(datapath, modelpath):
   with open(modelpath, 'rb') as f:
     model = joblib.load(f)
   preds = model.predict(df_X)
-  assert acc(df.price_range.values, df_X) >= 0.8
+  assert acc(df.price_range.values, preds) >= 0.8
