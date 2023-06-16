@@ -2,3 +2,4 @@
     url = gdrive://11xwP_h2K87L2Zkbdf6WBEgMkPDfuTdpS
     gdrive_client_id = 564181963943-dm2lm7kt65iilt1fn6n0t7b6vv12btqg.apps.googleusercontent.com
     gdrive_client_secret = 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
+    gdrive_use_service_account = false
