@@ -4,8 +4,8 @@ import pandas as pd
 from os import listdir
 from os.path import isfile, join
 
-def data_check(datapath):
-    df = pd.read_csv(datapath)
+def data_check(df):
+    # df = pd.read_csv(datapath)
     necessary_columns = ['battery_power', 'px_height', 'px_width', 'ram']
     missing_columns = []
     for nec_col in necessary_columns:
@@ -16,8 +16,8 @@ def data_check(datapath):
     else:
         return missing_columns
 
-def data_preps(datapath):
-    df = pd.read_csv(datapath)
+def data_preps(df):
+    # df = pd.read_csv(datapath)
     df = df.loc[:,['battery_power', 'px_height', 'px_width', 'ram']]
     return df.values
 
@@ -34,13 +34,15 @@ with open('models/cat_clf_mdl.joblib', 'rb') as f:
 
 st.title('Что почем?')
 data = st.file_uploader("Upload file", type=['csv'])
+st.write(data)
 
 if data:
     if st.button('Подтвердить'):
-        missing_columns = data_check(data)
+        df = pd.read_csv(data)
+        missing_columns = data_check(df)
         if missing_columns == 0:
             st.write('Результаты предсказаний')
-            preds = model.predict(data_preps(data))
+            preds = model.predict(data_preps(df))
             st.write(preds)
             save_button(preds)
         else:
@@ -52,10 +54,11 @@ else:
     filenames = [f for f in listdir('datasets/') if isfile(join('datasets/', f))]
     option = st.selectbox('Выбрать из доступных:',options=filenames)
     if st.button('Подтвердить выбор'):
-        missing_columns = data_check(join('datasets/', option))
+        df = pd.read_csv(join('datasets/', option))
+        missing_columns = data_check(df)
         if missing_columns == 0:
             st.write('Результаты предсказаний для', option)
-            preds = model.predict(data_preps(join('datasets/', option)))
+            preds = model.predict(data_preps(df))
             st.write(preds)
             save_button(preds)
         else:

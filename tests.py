@@ -6,11 +6,13 @@ from app import data_check
 
 # check if data is ok
 def test_data_check_posititve(datapath):
-  assert data_check(datapath) == 0
+  df = pd.read_csv(datapath)
+  assert data_check(df) == 0
 
 # check if data is NOT ok and there are missing columns 
 def test_data_check_negative():
-  assert data_check('testdata/test_neg.csv') == ['battery_power', 'px_height', 'px_width', 'ram']
+  df = pd.read_csv('testdata/test_neg.csv')
+  assert data_check(df) == ['battery_power', 'px_height', 'px_width', 'ram']
 
 # check if model prediction results
 def test_pred(datapath, modelpath):
