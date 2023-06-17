@@ -5,11 +5,11 @@ pipeline {
         stage('tests') {
             steps {
                sh 'pip3 install -r requirements.txt'
-               script {
-                    if [ ! -d "datasets" ] {
-                        mkdir datasets
-                    }
-               }
+               sh ''' 
+                  if [ ! -d "datasets" ]; then
+                  mkdir datasets
+                  fi
+                  '''
                sh 'python3 -m pytest tests.py --datapath testdata/m_test.csv --modelpath models/cat_clf_mdl.joblib'
             }
         }
