@@ -5,6 +5,7 @@ pipeline {
         stage('tests') {
             steps {
                sh 'pip3 install -r requirements.txt'
+               sh 'mkdir datasets'
                sh 'python3 -m pytest tests.py --datapath testdata/m_test.csv --modelpath models/cat_clf_mdl.joblib'
             }
         }
