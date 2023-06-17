@@ -2,7 +2,7 @@ from sklearn.metrics import accuracy_score as acc
 import pandas as pd
 import joblib
 import catboost
-from appcp1 import data_check
+from app import data_check
 
 # check if data is ok
 def test_data_check_posititve(datapath):
