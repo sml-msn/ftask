@@ -13,4 +13,5 @@
 * Ножнина Яна Михайловна
 
 Реализация на streamlit
+
 ![image](https://github.com/sml-msn/ftask/assets/122021948/158bc80d-6ec1-4a1e-833c-80cb0e51df17)
