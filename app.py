@@ -2,7 +2,7 @@ import streamlit as st
 import joblib 
 import pandas as pd
 from os import listdir
-from os.path import isfile, join
+from os.path import isfile, join, isdir
 
 def data_check(df):
     # df = pd.read_csv(datapath)
@@ -51,18 +51,19 @@ if data:
             st.write('Проверьте ваш датасет.')
 
 else:
-    filenames = [f for f in listdir('datasets/') if isfile(join('datasets/', f))]
-    option = st.selectbox('Выбрать из доступных:',options=filenames)
-    if st.button('Подтвердить выбор'):
-        df = pd.read_csv(join('datasets/', option))
-        missing_columns = data_check(df)
-        if missing_columns == 0:
-            st.write('Результаты предсказаний для', option)
-            preds = model.predict(data_preps(df))
-            st.write(preds)
-            save_button(preds)
-        else:
-            st.write('Не хватает колонок:')
-            st.write(missing_columns)
-            st.write('Проверьте ваш датасет.')
+    if isdir('datasets'):
+        filenames = [f for f in listdir('datasets/') if isfile(join('datasets/', f))]
+        option = st.selectbox('Выбрать из доступных:',options=filenames)
+        if st.button('Подтвердить выбор'):
+            df = pd.read_csv(join('datasets/', option))
+            missing_columns = data_check(df)
+            if missing_columns == 0:
+                st.write('Результаты предсказаний для', option)
+                preds = model.predict(data_preps(df))
+                st.write(preds)
+                save_button(preds)
+            else:
+                st.write('Не хватает колонок:')
+                st.write(missing_columns)
+                st.write('Проверьте ваш датасет.')
 
