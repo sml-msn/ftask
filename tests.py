@@ -16,9 +16,9 @@ def test_data_check_negative():
 
 # check if model prediction results
 def test_pred(datapath, modelpath):
-  df = pd.read_csv(datapath)
-  df_X = df.loc[:,['battery_power', 'px_height', 'px_width', 'ram']].values
-  with open(modelpath, 'rb') as f:
-    model = joblib.load(f)
-  preds = model.predict(df_X)
-  assert acc(df.price_range.values, preds) >= 0.8
+    df = pd.read_csv(datapath)
+    df_X = df.loc[:,['battery_power', 'px_height', 'px_width', 'ram']].values
+    with open(modelpath, 'rb') as f:
+        model = joblib.load(f)
+    preds = model.predict(df_X)
+    assert acc(df.price_range.values, preds) >= 0.8
