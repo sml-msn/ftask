@@ -11,8 +11,8 @@ def test_data_check_posititve(datapath):
 
 # check if data is NOT ok and there are missing columns 
 def test_data_check_negative():
-  df = pd.read_csv('testdata/test_neg.csv')
-  assert data_check(df) == ['battery_power', 'px_height', 'px_width', 'ram']
+    df = pd.read_csv('testdata/test_neg.csv')
+    assert data_check(df) == ['battery_power', 'px_height', 'px_width', 'ram']
 
 # check if model prediction results
 def test_pred(datapath, modelpath):
