@@ -34,7 +34,7 @@ with open('models/cat_clf_mdl.joblib', 'rb') as f:
 
 st.title('Что почем?')
 data = st.file_uploader("Upload file", type=['csv'])
-st.write(data)
+#st.write(data)
 
 if data:
     if st.button('Подтвердить'):
