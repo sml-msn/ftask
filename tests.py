@@ -6,8 +6,8 @@ from app import data_check
 
 # check if data is ok
 def test_data_check_posititve(datapath):
-  df = pd.read_csv(datapath)
-  assert data_check(df) == 0
+    df = pd.read_csv(datapath)
+    assert data_check(df) == 0
 
 # check if data is NOT ok and there are missing columns 
 def test_data_check_negative():
